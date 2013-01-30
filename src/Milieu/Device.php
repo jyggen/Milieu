@@ -130,7 +130,7 @@ class Device
     public function isPhone()
     {
 
-        if ($this->testHeaders()) {
+        if (!$this->isConsole() or $this->testHeaders()) {
 
             return true;
 
@@ -152,6 +152,12 @@ class Device
 
     public function isTablet()
     {
+
+        if ($this->isConsole()) {
+
+            return false;
+
+        }
 
         foreach ($this->tablets as $regex) {
 
