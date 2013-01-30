@@ -15,6 +15,14 @@ namespace Milieu;
 class Device
 {
 
+    protected $cache = array(
+        'isConsole' => null,
+        'isMobile'  => null,
+        'isPhone'   => null,
+        'isTablet'  => null,
+        'isWeb'     => null,
+    );
+
     protected $headers = array(
         'HTTP_ACCEPT'                  => 'application\/x-obml2d|application\/vnd\.rim\.html|text\/vnd\.wap\.wml|application\/vnd\.wap\.xhtml\+xml',
         'HTTP_X_WAP_PROFILE'           => null,
@@ -81,6 +89,8 @@ class Device
 
     protected $userAgent;
 
+    protected $isConsole;
+
     public function __construct()
     {
 
@@ -116,43 +126,61 @@ class Device
     public function isConsole()
     {
 
-        return php_sapi_name() == 'cli';
+        if ($this->cache['isConsole'] === null) {
+
+            $this->cache['isConsole'] = (php_sapi_name() === 'cli');
+
+        }
+
+        return $this->cache['isConsole'];
 
     }
 
     public function isMobile()
     {
 
-        return ($this->isPhone() or $this->isTablet()) ? true : false;
+        if($this->cache['isMobile'] === null) {
+
+            $this->cache['isMobile'] = ($this->isPhone() or $this->isTablet()) ? true : false;
+
+        }
+
+        return $this->cache['isMobile'];
 
     }
 
     public function isPhone()
     {
 
-        if ($this->isConsole()) {
+        if($this->cache['isPhone'] === null) {
 
-            return false;
+            if ($this->isConsole()) {
 
-        }
+                $this->cache['isPhone'] = false;
 
-        if ($this->testHeaders()) {
+            } elseif ($this->testHeaders()) {
 
-            return true;
+                $this->cache['isPhone'] = true;
 
-        }
+            } else {
 
-        foreach ($this->phones as $regex) {
+                $this->cache['isPhone'] = false;
 
-            if ($this->testDevice($regex)) {
+                foreach ($this->phones as $regex) {
 
-                return true;
+                    if ($this->testDevice($regex)) {
+
+                        $this->cache['isPhone'] = true;
+
+                    }
+
+                }
 
             }
 
         }
 
-        return false;
+        return $this->cache['isPhone'];
 
     }
 
@@ -161,28 +189,38 @@ class Device
 
         if ($this->isConsole()) {
 
-            return false;
+            $this->cache['isTablet'] = false;
 
-        }
+        } else {
 
-        foreach ($this->tablets as $regex) {
+            $this->cache['isTablet'] = false;
 
-            if ($this->testDevice($regex)) {
+            foreach ($this->tablets as $regex) {
 
-                return true;
+                if ($this->testDevice($regex)) {
+
+                    $this->cache['isTablet'] = true;
+
+                }
 
             }
 
         }
 
-        return false;
+        return $this->cache['isTablet'];
 
     }
 
     public function isWeb()
     {
 
-        return php_sapi_name() != 'cli';
+        if ($this->cache['isWeb'] === null) {
+
+            $this->cache['isWeb'] = (php_sapi_name() !== 'cli');
+
+        }
+
+        return $this->cache['isWeb'];
 
     }
 
