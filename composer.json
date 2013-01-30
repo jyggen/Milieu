@@ -1,7 +1,7 @@
 {
     "name": "jyggen/Milieu",
-    "description": "Lightweight environment detection.",
-    "keywords": ["environment", "configuration", "detection"],
+    "description": "An environment initialization, device detection and app configuration library.",
+    "keywords": ["environment", "configuration", "detection", "device", "config", "env", "mobile", "tablet", "android", "ipad", "iphone"],
     "author": [
         {
             "name": "Jonas Stendahl",
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Milieu": ""
+            "Milieu": "src/"
         }
     }
 }
