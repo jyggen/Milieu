@@ -130,7 +130,13 @@ class Device
     public function isPhone()
     {
 
-        if (!$this->isConsole() or $this->testHeaders()) {
+        if ($this->isConsole()) {
+
+            return false;
+
+        }
+
+        if ($this->testHeaders()) {
 
             return true;
 
