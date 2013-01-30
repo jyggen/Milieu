@@ -113,6 +113,13 @@ class Device
 
     }
 
+    public function isConsole()
+    {
+
+        return php_sapi_name() == 'cli';
+
+    }
+
     public function isMobile()
     {
 
@@ -157,6 +164,13 @@ class Device
         }
 
         return false;
+
+    }
+
+    public function isWeb()
+    {
+
+        return php_sapi_name() != 'cli';
 
     }
 
