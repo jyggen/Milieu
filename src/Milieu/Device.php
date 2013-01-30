@@ -16,7 +16,7 @@ class Device
 {
 
     protected $headers = array(
-        'HTTP_ACCEPT'                  => 'application\/x-obml2d|application/vnd\.rim\.html|text\/vnd\.wap\.wml|application/vnd\.wap\.xhtml\+xml',
+        'HTTP_ACCEPT'                  => 'application\/x-obml2d|application\/vnd\.rim\.html|text\/vnd\.wap\.wml|application\/vnd\.wap\.xhtml\+xml',
         'HTTP_X_WAP_PROFILE'           => null,
         'HTTP_X_WAP_CLIENTID'          => null,
         'HTTP_WAP_CONNECTION'          => null,
@@ -178,7 +178,7 @@ class Device
 
                     return true;
 
-                } elseif (preg_match($regex, $_SERVER[$header])) {
+                } elseif (preg_match('/'.$regex.'/', $_SERVER[$header])) {
 
                     return true;
 
