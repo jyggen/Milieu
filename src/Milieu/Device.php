@@ -134,7 +134,7 @@ class Device
     public function isMobile()
     {
 
-        if($this->cache['isMobile'] === null) {
+        if ($this->cache['isMobile'] === null) {
 
             $this->cache['isMobile'] = ($this->isPhone() or $this->isTablet()) ? true : false;
 
@@ -147,7 +147,7 @@ class Device
     public function isPhone()
     {
 
-        if($this->cache['isPhone'] === null) {
+        if ($this->cache['isPhone'] === null) {
 
             if ($this->isConsole()) {
 

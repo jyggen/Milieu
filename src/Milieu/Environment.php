@@ -15,4 +15,13 @@ namespace Milieu;
 class Environment
 {
 
+	protected $current;
+
+	public function is($name)
+	{
+
+		return ($this->current === $name);
+
+	}
+
 }
