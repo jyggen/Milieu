@@ -15,6 +15,9 @@ namespace Milieu;
 class Milieu
 {
 
+	public static $environments;
+	public static $path;
+
 	protected $config;
 	protected $device;
 	protected $environment;
@@ -22,9 +25,19 @@ class Milieu
 	public function __construct()
 	{
 
-		$this->config      = new Config;
-		$this->device      = new Device;
-		$this->environment = new Environment;
+		$this->device = new Device($this);
+
+		if (static::$path !== null) {
+
+			$this->config = new Config(static::$path, $this);
+
+		}
+
+		if (static::$environments !== null) {
+
+			$this->environment = new Environment(static::$environments, $this);
+
+		}
 
 	}
 
