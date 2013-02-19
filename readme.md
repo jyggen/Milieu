@@ -4,6 +4,8 @@ A lightweight environment initialization, detection and configuration library.
 
 [Find Milieu on Packagist/Composer](https://packagist.org/packages/jyggen/Milieu)
 
+## Usage
+
 ## About
 
 Milieu is the word for environment in French, and, for hundreds of years, also in Dutch, German, Swedish, English, and other languages that were strongly influenced by French culture and French language, primarily during the 17th and 18th centuries.
