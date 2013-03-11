@@ -1,5 +1,5 @@
 {
-    "name": "jyggen/milieu",
+    "name": "milieu/milieu",
     "description": "An environment initialization, device detection and app configuration library.",
     "keywords": ["environment", "configuration", "detection", "device", "config", "env", "mobile", "tablet", "android", "ipad", "iphone"],
     "author": [
